@@ -3,36 +3,36 @@ package tictactoe;
 import java.util.Scanner;
 
 public class Gameplay {
-    public void start() {
+
+    public void menu() {
         Scanner sc = new Scanner(System.in);
-        Map map = new Map();
-        AI playerAI = new AI();
-        int c1, c2;
-        map.printMap();
-        while (true) {
-            System.out.print("Enter the coordinates: ");
-            try {
-                c1 = sc.nextInt();
-                c2 = sc.nextInt();
-                sc.nextLine();
-                if (c1 > 3 || c2 > 3 || c1 < 1 || c2 < 1) {
-                    System.out.println("Coordinates should be from 1 to 3!");
+        while(true) {
+            System.out.print("Input command: ");
+            String[] input = sc.nextLine().split(" ");
+            if (input.length > 0 && input[0].equals("exit")) {
+                break;
+            } else if (input.length > 2 && input[0].equals("start")) {
+                if((input[1].equals("user") || input[1].equals("easy"))
+                && (input[2].equals("user") || input[2].equals("easy"))) {
+                    start(sc, input[1], input[2]);
                 } else {
-                    if (map.setField(c1, c2)) {
-                        //map.printMap();
-                        if (isGameEnded(map)) break;
-                        System.out.println("Making move level \"easy\"");
-                        playerAI.takeRandomMove(map);
-                        //map.printMap();
-                        if (isGameEnded(map)) break;
-                    } else {
-                        System.out.println("This cell is occupied! Choose another one!");
-                    }
+                    System.out.println("Bad parameters!");
                 }
-            } catch (Exception e) {
-                System.out.println("You should enter numbers!");
-                sc.nextLine();
+            } else {
+                System.out.println("Bad parameters!");
             }
+        }
+    }
+    public void start(Scanner sc, String player1, String player2) {
+        Map map = new Map();
+        Move move = new Move();
+        while(true) {
+            if (player1.equals("user")) move.userMove(sc, map);
+            else move.computerRandomMove(map);
+            if (isGameEnded(map)) break;
+            if (player2.equals("user")) move.userMove(sc, map);
+            else move.computerRandomMove(map);
+            if (isGameEnded(map)) break;
         }
     }
 
