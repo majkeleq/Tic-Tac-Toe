@@ -3,7 +3,7 @@ package tictactoe;
 public class Map {
     private Sign[][] map = new Sign[3][3];
 
-    public void setMap(String chars) {
+    /*public void setMap(String chars) {
         for (int i = 0; i < 9; i++) {
             if (chars.charAt(i) == 'X') {
                 map[i / 3][i % 3] = new SignX(i / 3, i % 3);
@@ -11,7 +11,7 @@ public class Map {
                 map[i / 3][i % 3] = new SignO(i / 3, i % 3);
             }
         }
-    }
+    }*/
 
     public boolean setField(int firstCoord, int secondCoord) {
         if (!isFieldOccupied(firstCoord, secondCoord)) {
@@ -23,7 +23,7 @@ public class Map {
             printMap();
             return true;
         } else {
-            System.out.println("This cell is occupied! Choose another one!");
+            //System.out.println("This cell is occupied! Choose another one!");
             return false;
         }
     }
@@ -45,9 +45,7 @@ public class Map {
     }
 
     public boolean isFieldOccupied(int firstCoord, int secondCoord) {
-        if (map[firstCoord - 1][secondCoord - 1] == null) {
-            return false;
-        } else return true;
+        return map[firstCoord - 1][secondCoord - 1] != null;
     }
 
     //if there are less X or equal then true. If there are less O then false
@@ -62,7 +60,7 @@ public class Map {
                 }
             }
         }
-        return counterX <= counterY ? true : false;
+        return counterX <= counterY;
     }
 
     public Sign isWon() {

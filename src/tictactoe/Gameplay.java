@@ -6,14 +6,9 @@ public class Gameplay {
     public void start() {
         Scanner sc = new Scanner(System.in);
         Map map = new Map();
-        System.out.print("Enter the cells: ");
-        map.setMap(sc.nextLine());
-        map.printMap();
-        takeCoordinates(sc, map);
-    }
-
-    public void takeCoordinates(Scanner sc, Map map) {
+        AI playerAI = new AI();
         int c1, c2;
+        map.printMap();
         while (true) {
             System.out.print("Enter the coordinates: ");
             try {
@@ -24,7 +19,14 @@ public class Gameplay {
                     System.out.println("Coordinates should be from 1 to 3!");
                 } else {
                     if (map.setField(c1, c2)) {
+                        //map.printMap();
                         if (isGameEnded(map)) break;
+                        System.out.println("Making move level \"easy\"");
+                        playerAI.takeRandomMove(map);
+                        //map.printMap();
+                        if (isGameEnded(map)) break;
+                    } else {
+                        System.out.println("This cell is occupied! Choose another one!");
                     }
                 }
             } catch (Exception e) {
@@ -43,8 +45,8 @@ public class Gameplay {
             System.out.println("Draw");
             return true;
         } else {
-            System.out.println("Game not finished");
-            return true; //DO ZMIANY JESlI BEDZIE TRZEBA ZAIMPLEMENTOWAC PETLE!!!
+            //System.out.println("Game not finished");
+            return false;
         }
     }
 }
