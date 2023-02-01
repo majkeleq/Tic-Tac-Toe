@@ -6,14 +6,14 @@ public class Gameplay {
 
     public void menu() {
         Scanner sc = new Scanner(System.in);
-        while(true) {
+        while (true) {
             System.out.print("Input command: ");
             String[] input = sc.nextLine().split(" ");
             if (input.length > 0 && input[0].equals("exit")) {
                 break;
             } else if (input.length > 2 && input[0].equals("start")) {
-                if((input[1].equals("user") || input[1].equals("easy"))
-                && (input[2].equals("user") || input[2].equals("easy"))) {
+                if ((input[1].equals("user") || input[1].equals("easy"))
+                        && (input[2].equals("user") || input[2].equals("easy"))) {
                     start(sc, input[1], input[2]);
                 } else {
                     System.out.println("Bad parameters!");
@@ -23,15 +23,15 @@ public class Gameplay {
             }
         }
     }
-    public void start(Scanner sc, String player1, String player2) {
+
+    public void start(Scanner sc, String player1Type, String player2Type) {
         Map map = new Map();
-        Move move = new Move();
-        while(true) {
-            if (player1.equals("user")) move.userMove(sc, map);
-            else move.computerRandomMove(map);
+        Player player1 = returnPlayer(player1Type, new SignX());
+        Player player2 = returnPlayer(player2Type, new SignO());
+        while (true) {
+            player1.move(map);
             if (isGameEnded(map)) break;
-            if (player2.equals("user")) move.userMove(sc, map);
-            else move.computerRandomMove(map);
+            player2.move(map);
             if (isGameEnded(map)) break;
         }
     }
@@ -48,5 +48,11 @@ public class Gameplay {
             //System.out.println("Game not finished");
             return false;
         }
+    }
+
+    private Player returnPlayer(String playerType,Sign sign) {
+        if (playerType.equals("user")) return new UserPlayer(sign);
+        if (playerType.equals("easy")) return new EasyPlayer(sign);
+        return null;
     }
 }

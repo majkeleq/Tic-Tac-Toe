@@ -1,10 +1,14 @@
 package tictactoe;
 
-import java.util.Random;
-import java.util.Scanner;
+public abstract class Player {
+    Sign sign;
 
-public class Move {
-    public void userMove(Scanner sc, Map map) {
+    public Player(Sign sign) {
+        this.sign = sign;
+    }
+
+    public abstract void move(Map map);
+    /*public void userMove(Scanner sc, Map map) {
         int c1, c2;
         map.printMap();
         while (true) {
@@ -34,5 +38,5 @@ public class Move {
         while(true) {
             if (map.setField(random.nextInt(3) + 1, random.nextInt(3) + 1)) break;
         }
-    }
+    }*/
 }

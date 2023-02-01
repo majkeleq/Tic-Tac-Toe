@@ -2,9 +2,12 @@ package tictactoe;
 
 public abstract class Sign {
     private final char sign;
-    private final int firstCoord;
-    private final int secondCoord;
+    private int firstCoord;
+    private int secondCoord;
 
+    public Sign(char sign){
+        this.sign = sign;
+    }
     public Sign(char sign, int firstCoord, int secondCoord) {
         this.sign = sign;
         this.firstCoord = firstCoord;

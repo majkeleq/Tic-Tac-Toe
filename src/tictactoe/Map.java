@@ -3,7 +3,8 @@ package tictactoe;
 public class Map {
     private Sign[][] map = new Sign[3][3];
 
-    /*public void setMap(String chars) {
+    @Deprecated
+    public void setMap(String chars) {
         for (int i = 0; i < 9; i++) {
             if (chars.charAt(i) == 'X') {
                 map[i / 3][i % 3] = new SignX(i / 3, i % 3);
@@ -11,11 +12,11 @@ public class Map {
                 map[i / 3][i % 3] = new SignO(i / 3, i % 3);
             }
         }
-    }*/
+    }
 
-    public boolean setField(int firstCoord, int secondCoord) {
+    public boolean setField(int firstCoord, int secondCoord, char sign) {
         if (!isFieldOccupied(firstCoord, secondCoord)) {
-            if (signXStarts()) {
+            if (sign == 'X') {
                 map[firstCoord - 1][secondCoord - 1] = new SignX(firstCoord - 1, secondCoord - 1);
             } else {
                 map[firstCoord - 1][secondCoord - 1] = new SignO(firstCoord - 1, secondCoord - 1);
@@ -49,6 +50,7 @@ public class Map {
     }
 
     //if there are less X or equal then true. If there are less O then false
+    @Deprecated
     public boolean signXStarts() {
         int counterX = 0, counterY = 0;
         for (int i = 0; i < 9; i++) {
