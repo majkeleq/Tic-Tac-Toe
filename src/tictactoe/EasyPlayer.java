@@ -13,7 +13,7 @@ public class EasyPlayer extends Player {
         Random random = new Random();
         System.out.println("Making move level \"easy\"");
         while(true) {
-            if (map.setField(random.nextInt(3) + 1, random.nextInt(3) + 1, super.sign.getSign())) break;
+            if (map.setField(random.nextInt(3), random.nextInt(3), super.sign.getSign())) break;
         }
     }
 }

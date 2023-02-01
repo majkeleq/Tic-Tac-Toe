@@ -3,6 +3,25 @@ package tictactoe;
 public class Map {
     private Sign[][] map = new Sign[3][3];
 
+    public int getLength() {
+        return map.length;
+    }
+
+    public Sign getField(int i, int j) {
+        return map[i][j];
+    }
+    public Sign[] getRow(int i) {
+        return map[i];
+    }
+
+    public Sign[] getColumn(int j) {
+        Sign[] column = new Sign[3];
+        for (int i = 0; i < map.length; i++) {
+            column[i] = map[i][j];
+        }
+        return column;
+    }
+
     @Deprecated
     public void setMap(String chars) {
         for (int i = 0; i < 9; i++) {
@@ -17,9 +36,9 @@ public class Map {
     public boolean setField(int firstCoord, int secondCoord, char sign) {
         if (!isFieldOccupied(firstCoord, secondCoord)) {
             if (sign == 'X') {
-                map[firstCoord - 1][secondCoord - 1] = new SignX(firstCoord - 1, secondCoord - 1);
+                map[firstCoord][secondCoord] = new SignX(firstCoord, secondCoord);
             } else {
-                map[firstCoord - 1][secondCoord - 1] = new SignO(firstCoord - 1, secondCoord - 1);
+                map[firstCoord][secondCoord] = new SignO(firstCoord, secondCoord);
             }
             printMap();
             return true;
@@ -46,7 +65,7 @@ public class Map {
     }
 
     public boolean isFieldOccupied(int firstCoord, int secondCoord) {
-        return map[firstCoord - 1][secondCoord - 1] != null;
+        return map[firstCoord][secondCoord] != null;
     }
 
     //if there are less X or equal then true. If there are less O then false

@@ -23,7 +23,7 @@ public class UserPlayer extends Player {
                 if (c1 > 3 || c2 > 3 || c1 < 1 || c2 < 1) {
                     System.out.println("Coordinates should be from 1 to 3!");
                 } else {
-                    if (map.setField(c1, c2, super.sign.getSign())) {
+                    if (map.setField(c1 - 1, c2 - 1, super.sign.getSign())) {
                         break;
                     } else {
                         System.out.println("This cell is occupied! Choose another one!");
