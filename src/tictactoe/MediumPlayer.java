@@ -24,15 +24,13 @@ public class MediumPlayer extends Player {
     public boolean searchWinningMove(Map map) {
         if (searchWinningRows(map)) return true;
         if (searchWinningColumns(map)) return true;
-        if (searchWinningDiagonals(map)) return true;
-        return false;
+        return searchWinningDiagonals(map);
     }
 
     public boolean searchBlockingMove(Map map) {
         if (searchBlockingRows(map)) return true;
         if (searchBlockingColumns(map)) return true;
-        if (searchBlockingDiagonals(map)) return true;
-        return false;
+        return searchBlockingDiagonals(map);
     }
 
     public boolean searchWinningRows(Map map) {
@@ -58,7 +56,7 @@ public class MediumPlayer extends Player {
     }
 
     public boolean searchBlockingRows(Map map) {
-        int nullCounter, mySignCounter, enemySignCounter;
+        int nullCounter, enemySignCounter;
         int nullJ = 0;
         Sign[] temp;
         for (int i = 0; i < map.getLength(); i++) {
