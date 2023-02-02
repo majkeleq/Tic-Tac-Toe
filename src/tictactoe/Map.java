@@ -1,7 +1,7 @@
 package tictactoe;
 
 public class Map {
-    private Sign[][] map = new Sign[3][3];
+    private final Sign[][] map = new Sign[3][3];
 
     public int getLength() {
         return map.length;

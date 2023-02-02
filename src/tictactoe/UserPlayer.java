@@ -13,7 +13,7 @@ public class UserPlayer extends Player {
     public void move(Map map) {
         Scanner sc = new Scanner(System.in);
         int c1, c2;
-        map.printMap();
+        //map.printMap();
         while (true) {
             System.out.print("Enter the coordinates: ");
             try {
@@ -24,6 +24,7 @@ public class UserPlayer extends Player {
                     System.out.println("Coordinates should be from 1 to 3!");
                 } else {
                     if (map.setField(c1 - 1, c2 - 1, super.sign.getSign())) {
+                        //map.printMap();
                         break;
                     } else {
                         System.out.println("This cell is occupied! Choose another one!");

@@ -26,8 +26,10 @@ public class Gameplay {
 
     public void start(String player1Type, String player2Type) {
         Map map = new Map();
+        //map.setMap("___O__X__");
         Player player1 = returnPlayer(player1Type, new SignX());
         Player player2 = returnPlayer(player2Type, new SignO());
+        map.printMap();
         while (true) {
             player1.move(map);
             if (isGameEnded(map)) break;
