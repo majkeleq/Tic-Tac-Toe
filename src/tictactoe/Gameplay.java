@@ -12,8 +12,8 @@ public class Gameplay {
             if (input.length > 0 && input[0].equals("exit")) {
                 break;
             } else if (input.length > 2 && input[0].equals("start")) {
-                if ((input[1].equals("user") || input[1].equals("easy") || input[1].equals("medium"))
-                        && (input[2].equals("user") || input[2].equals("easy") || input[2].equals("medium"))) {
+                if ((input[1].equals("user") || input[1].equals("easy") || input[1].equals("medium") || input[1].equals("hard"))
+                        && (input[2].equals("user") || input[2].equals("easy") || input[2].equals("medium") || input[2].equals("hard"))) {
                     start(input[1], input[2]);
                 } else {
                     System.out.println("Bad parameters!");
@@ -28,11 +28,15 @@ public class Gameplay {
         Map map = new Map();
         Player player1 = returnPlayer(player1Type, new SignX());
         Player player2 = returnPlayer(player2Type, new SignO());
-        map.printMap();
+        if (player1.getClass() == UserPlayer.class) {
+            map.printMap();
+        }
         while (true) {
             player1.move(map);
+            map.printMap();
             if (isGameEnded(map)) break;
             player2.move(map);
+            map.printMap();
             if (isGameEnded(map)) break;
         }
     }
@@ -55,6 +59,7 @@ public class Gameplay {
         if (playerType.equals("user")) return new UserPlayer(sign);
         if (playerType.equals("easy")) return new EasyPlayer(sign);
         if (playerType.equals("medium")) return new MediumPlayer(sign);
+        if (playerType.equals("hard")) return new HardPlayer(sign);
         return null;
     }
 }

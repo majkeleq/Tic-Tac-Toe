@@ -33,6 +33,10 @@ public class Map {
         }
     }
 
+    public void emptyField(int firstCoord, int secondCoord) {
+        map[firstCoord][secondCoord] = null;
+    }
+
     public boolean setField(int firstCoord, int secondCoord, char sign) {
         if (!isFieldOccupied(firstCoord, secondCoord)) {
             if (sign == 'X') {
@@ -40,7 +44,7 @@ public class Map {
             } else {
                 map[firstCoord][secondCoord] = new SignO(firstCoord, secondCoord);
             }
-            printMap();
+            //printMap();
             return true;
         } else {
             //System.out.println("This cell is occupied! Choose another one!");
